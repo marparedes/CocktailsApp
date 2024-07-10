@@ -16,9 +16,13 @@ activityCompose = "1.9.0"
 hilt = "2.50"
 coil = "2.6.0"
 org-jetbrains-kotlin-android = "1.8.0"
-mockk = "1.13.11"
+mockk = "1.13.10"
 androidx-core-testing = "2.1.0"
 mockito = "4.8.1"
+coroutines-test = "1.5.2"
+mockito-kotlin = "3.2.0"
+mockito-inline = "3.11.2"
+turbine = "0.12.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,7 +54,10 @@ dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "androidx-core-testing" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
-
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito-inline" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,7 +1,5 @@
 package com.marparedes.cocktailsapp.data.remote.dto
 
-import com.marparedes.cocktailsapp.domain.model.CocktailModel
-
 data class DrinkDTO(
     val dateModified: String?,
     val idDrink: String?,
