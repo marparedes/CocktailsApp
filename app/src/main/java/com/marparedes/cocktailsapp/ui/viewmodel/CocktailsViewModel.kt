@@ -20,7 +20,7 @@ class CocktailsViewModel @Inject constructor(
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     fun searchCocktail(name: String) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             searchCocktailByNameUseCase.invoke(name.lowercase()).collect {
                 when (it.status) {
                     Status.SUCCESS -> {
