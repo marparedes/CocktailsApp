@@ -62,14 +62,24 @@ class MainActivity : AppCompatActivity() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     when {
-                        uiState.isLoading -> binding.progressBar.visibility = View.VISIBLE
-                        uiState.data.isNotEmpty() -> {
+                        uiState.isLoading -> {
+                            binding.recyclerView.visibility = View.GONE
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
+                        uiState.data?.isNotEmpty() == true -> {
+                            binding.recyclerView.visibility = View.VISIBLE
                             binding.progressBar.visibility = View.GONE
-                            adapterList.submitList(uiState.data)
+                            uiState.data?.let {
+                                adapterList.submitList(it)
+                            }
+                        }
+                        uiState.data?.isEmpty() == true -> {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(applicationContext, "No matches found", Toast.LENGTH_LONG).show()
                         }
                         uiState.isError.isNotBlank() -> {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(applicationContext,uiState.isError, Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, uiState.isError, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
