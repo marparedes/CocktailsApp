@@ -3,11 +3,15 @@
 Cocktails App muestra una lista de cocktails con sus respectivos datos como: nombre de la bebida, ingredientes y si es una bebida alcoholica o no. Tambien se podrá realizar una busqueda por el nombre del cocktail.
 
 ## Features
+
+<img src="/images/demo.gif" align="right" width="320"/>
+
 - Buscar cocktails por el nombre.
 - Ver informacion sobre el cocktail en cards (nombre, ingredientes, si contiene alcohol o no mediante un icono).
 - Se obtienen los datos de una API llamada [“TheCocktailDB”](https://www.thecocktaildb.com/api.php).
 
 ## Arquitectura
+
 Este proyecto sigue el patrón de arquitectura MVVM y Clean Architecture.
 
 ### MVVM (Model-View-ViewModel)
@@ -17,6 +21,7 @@ Este proyecto sigue el patrón de arquitectura MVVM y Clean Architecture.
 - **ViewModel**: Maneja la data relacionada con la UI. Proporciona datos a la View y reacciona a las interacciones del usuario.
 
 ### Clean Architecture
+<img src="/images/clean_architecture.jpg" align="center" width="500"/>
 
 - **Data Layer**: Maneja las operaciones de datos. Contiene repositories y la fuenta de datos remota (API).
 - **Domain Layer**: Contiene la lógica de negocio y los casos de uso.
