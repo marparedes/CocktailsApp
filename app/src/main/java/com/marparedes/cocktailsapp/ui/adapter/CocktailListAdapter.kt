@@ -1,7 +1,6 @@
 package com.marparedes.cocktailsapp.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -50,41 +49,9 @@ class CocktailListAdapter: RecyclerView.Adapter<CocktailListAdapter.myViewHolder
                 alcoholicDrink.setImageResource(R.drawable.no_drinks_24px)
             }
             if(!item.ingredients.isNullOrEmpty()) {
-
-                if (0 in item.ingredients.indices) {
-                    bullet1.visibility = View.VISIBLE
-                    ingredient1.visibility = View.VISIBLE
-                    ingredient1.text = item.ingredients[0]
-                } else {
-                    bullet1.visibility = View.GONE
-                    ingredient1.visibility = View.GONE
-                }
-                if (1 in item.ingredients.indices) {
-                    bullet2.visibility = View.VISIBLE
-                    ingredient2.visibility = View.VISIBLE
-                    ingredient2.text = item.ingredients[1]
-                } else {
-                    bullet2.visibility = View.GONE
-                    ingredient2.visibility = View.GONE
-                }
-
-                if (2 in item.ingredients.indices) {
-                    bullet3.visibility = View.VISIBLE
-                    ingredient3.visibility = View.VISIBLE
-                    ingredient3.text = item.ingredients[2]
-                } else {
-                    bullet3.visibility = View.GONE
-                    ingredient3.visibility = View.GONE
-                }
-
-                if (3 in item.ingredients.indices) {
-                    bullet4.visibility = View.VISIBLE
-                    ingredient4.visibility = View.VISIBLE
-                    ingredient4.text = item.ingredients[3]
-                } else {
-                    bullet4.visibility = View.GONE
-                    ingredient4.visibility = View.GONE
-                }
+                ingredientsList.layoutManager = GridLayoutManager(root.context, 2)
+                ingredientsList.adapter = IngredientListAdapter(item.ingredients)
+                ingredientsList.setHasFixedSize(false)
             }
         }
     }

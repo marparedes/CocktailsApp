@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // First set a list without searching an specific Cocktail
-        viewModel.searchCocktail("")
-
         adapterList = CocktailListAdapter()
         binding.recyclerView.apply {
             adapter = adapterList
@@ -38,11 +35,10 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(name: String?): Boolean {
                 binding.searchView.clearFocus()
-                if(!name.isNullOrBlank()) {
+                if (!name.isNullOrBlank()) {
                     viewModel.searchCocktail(name)
                 }
                 return true
@@ -51,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 return false
             }
-
         })
 
         collectData()
@@ -59,27 +54,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun collectData() {
         lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     when {
                         uiState.isLoading -> {
-                            binding.recyclerView.visibility = View.GONE
                             binding.progressBar.visibility = View.VISIBLE
+                            binding.recyclerView.visibility = View.GONE
                         }
-                        uiState.data?.isNotEmpty() == true -> {
+
+                        uiState.data.isNotEmpty() -> {
                             binding.recyclerView.visibility = View.VISIBLE
                             binding.progressBar.visibility = View.GONE
-                            uiState.data?.let {
+                            uiState.data.let {
                                 adapterList.submitList(it)
                             }
                         }
-                        uiState.data?.isEmpty() == true -> {
-                            binding.progressBar.visibility = View.GONE
-                            Toast.makeText(applicationContext, "No matches found", Toast.LENGTH_LONG).show()
-                        }
+
                         uiState.isError.isNotBlank() -> {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(applicationContext, uiState.isError, Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, uiState.isError, Toast.LENGTH_LONG)
+                                .show()
                         }
                     }
                 }
