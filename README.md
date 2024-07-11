@@ -4,7 +4,7 @@ Cocktails App muestra una lista de cocktails con sus respectivos datos como: nom
 
 ## Features
 
-<img src="/images/demo.gif" align="right" width="300"/>
+<img src="/images/demo.gif" align="right" width="280"/>
 
 - Buscar cocktails por el nombre.
 - Ver informacion sobre el cocktail en cards (nombre, ingredientes, si contiene alcohol o no mediante un icono).
