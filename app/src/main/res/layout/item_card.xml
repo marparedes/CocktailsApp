@@ -11,7 +11,6 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:paddingBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,13 +37,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                tools:text="TextView"
                 android:textSize="18sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.228"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cocktailImage" />
+                app:layout_constraintTop_toBottomOf="@+id/cocktailImage"
+                tools:text="TextView" />
 
             <TextView
                 android:id="@+id/txtIngredients"
@@ -65,12 +64,13 @@
                 android:id="@+id/ingredientsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="6dp"
-                app:flow_horizontalAlign="center"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="6dp"
+                app:flow_horizontalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtIngredients" />
 
             <ImageView

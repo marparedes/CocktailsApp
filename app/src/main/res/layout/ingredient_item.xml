@@ -19,7 +19,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
-        android:textSize="12sp"
+        android:textSize="14sp"
         tools:text="Ingredient" />
 
 </LinearLayout>
