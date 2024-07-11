@@ -41,6 +41,9 @@ class CocktailsViewModelTest {
     @Before
     fun onBefore() {
         MockKAnnotations.init(this, relaxUnitFun = true)
+        coEvery { searchCocktailByNameUseCase.invoke("") } returns flow {
+            emit(Resource.success(emptyList()))
+        }
         viewModel = CocktailsViewModel(searchCocktailByNameUseCase)
     }
 
@@ -93,7 +96,7 @@ class CocktailsViewModelTest {
 
         // Then
         val uiState = viewModel.uiState.value
-        Assert.assertEquals("Error", uiState.isError)
+        Assert.assertEquals("Unexpected error", uiState.isError)
         Assert.assertEquals(emptyList<String>(), uiState.data)
         Assert.assertFalse(uiState.isLoading)
     }

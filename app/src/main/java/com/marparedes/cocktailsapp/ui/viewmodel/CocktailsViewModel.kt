@@ -19,17 +19,26 @@ class CocktailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
+    init {
+        // First set a list of drinks without searching an specific Cocktail
+        searchCocktail("")
+    }
+
     fun searchCocktail(name: String) {
         viewModelScope.launch {
             searchCocktailByNameUseCase.invoke(name.lowercase()).collect {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        _uiState.value = UiState(data = it.data)
+                        if(it.data.isNullOrEmpty()) {
+                            _uiState.value = UiState(isError = "No matches found")
+                        } else {
+                            _uiState.value = UiState(data = it.data)
+                        }
                     }
                     Status.LOADING ->  _uiState.value = UiState(isLoading = true)
                     Status.API_ERROR,
                     Status.NETWORK_ERROR,
-                    Status.ERROR -> _uiState.value = UiState(isError = "Error")
+                    Status.ERROR -> _uiState.value = UiState(isError = "Unexpected error")
                 }
             }
         }
